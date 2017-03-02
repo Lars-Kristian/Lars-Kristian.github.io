@@ -1,4 +1,3 @@
-- Bound around level. Use ring mesh
 - Color pattern system.
 - Trigger game over and reset game.
 - Render line after ship.
@@ -17,7 +16,6 @@
   - Collision solver.
   
 - BUGS.
-  - When to trigger orbit bug.
   
 - Level tracker.
   - Seed for generation.
