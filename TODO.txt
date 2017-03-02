@@ -16,6 +16,12 @@
   - Manifoldes.
   - Collision solver.
   
+- BUGS.
+  - When to trigger orbit bug.
+  
+- Level tracker.
+  - Seed for generation.
+  
 - Make level transition.
   - Generate new level.
   - Spawn new level.
