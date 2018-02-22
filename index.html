@@ -8,26 +8,31 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     </head>
   <body>
-         <script>
-            function hello() {
-              console.log('requestDevice');
-              navigator.usb.requestDevice({ filters: [{
-                    vendorId: 0x0A5F,
-                    protocolCode: 0009
-                }]}).then((device) => {
-                 console.log(device);
-              });
-              console.log('getDevices');
-              navigator.usb.getDevices().then((devices) => {
-                  devices.map(device => {
-                    console.log('Device:');
-                    console.log(device.productName);
-                    console.log(device.manufacturerName);
-                  });
-                });
-            }
-        </script>
     1
-    <button onclick="hello()">Click me</button>
+    <button id="request-device">Click me</button>
+             <script>
+let button = document.getElementById('request-device');
+button.addEventListener('click', async () => {
+  let device;
+  try {
+    console.log('requestDevice');
+    device = await navigator.usb.requestDevice({ filters: [{
+          vendorId: 0x0A5F,
+          protocolCode: 0009
+    }]});
+  } catch (err) {
+    // No device was selected.
+  }
+
+  if (device !== undefined) {
+    // Add |device| to the UI.
+  }else{
+  console.log('getDevices');
+  navigator.usb.getDevices().then((devices) => {
+                  console.log(devices);
+                });
+  }
+});
+        </script>
   </body>
 </html>
