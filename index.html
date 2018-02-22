@@ -10,18 +10,21 @@
   <body>
          <script>
             function hello() {
-              console.log('Clicked');
-              navigator.usb.requestDevice().then((device) => {
+              console.log('requestDevice');
+              navigator.usb.requestDevice({ filters: [{
+                    vendorId: 0x0A5F,
+                    protocolCode: 0009
+                }]}).then((device) => {
                  console.log(device);
               });
-                console.log('Clicked');
-                navigator.usb.getDevices().then((devices) => {
-                    devices.map(device => {
-                      console.log('Device:');
-                      console.log(device.productName);
-                      console.log(device.manufacturerName);
-                    });
+              console.log('getDevices');
+              navigator.usb.getDevices().then((devices) => {
+                  devices.map(device => {
+                    console.log('Device:');
+                    console.log(device.productName);
+                    console.log(device.manufacturerName);
                   });
+                });
             }
         </script>
     <button onclick="hello()">Click me</button>
