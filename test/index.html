@@ -16,9 +16,7 @@ button.addEventListener('click', async () => {
   let device;
   try {
     console.log('requestDevice');
-    device = await navigator.usb.requestDevice({ filters: [{
-          productId: 0x5BC4
-    }]});
+    device = await navigator.usb.requestDevice({ filters: []});
   } catch (err) {
     // No device was selected.
   }
