@@ -31,7 +31,7 @@ btnAdd.addEventListener('click', (e) => {
 */
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('./sw.js')
         .then(function (registration) {
             console.log("ServiceWorker registration succeeded.", registration);
         }).catch(function (err) {
