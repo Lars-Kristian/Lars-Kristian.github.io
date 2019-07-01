@@ -1,4 +1,4 @@
-const preCacheName = "pre-cache-hbp"
+const cacheName = "version1"
 
 let preCacheFiles = [
     "/",
@@ -11,19 +11,26 @@ let preCacheFiles = [
 ];
 
 self.addEventListener("install", event => {
-    caches.open(preCacheName).then(function (cache) {
+    caches.open(cacheName).then(function (cache) {
         return cache.addAll(preCacheFiles);
     });
 });
 
 self.addEventListener("fetch", event => {
-    event.respondWith(
-        caches.match(event.request).then(response => {
-            if (!response) {
-                //fall back to the network fetch
-                return fetch(event.request);
-            }
+    event.respondWith(fromCache(event.request));
+});
+
+function fromCache(request) {
+    return caches.open(cacheName).then(function (cache) {
+        return cache.match(request).then(response => {
+            if (!response) return fetch(request); //fallback to network fetch
             return response;
         })
-    )
+    })
+}
+
+self.addEventListener('message', event => {
+    if (event.data === 'skip-waiting') {
+        self.skipWaiting();
+    }
 });
