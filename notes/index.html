@@ -3,7 +3,7 @@
 
 <head>
     <title>This is the title of the webpage!</title>
-    <base href="/notes/" >
+    <base href="/notes/">
     <meta name="theme-color" content="#3367D6" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="./manifest.json">
@@ -12,24 +12,51 @@
     <script src="./index.js"></script>
 </head>
 
-<body>
-    New change
+
+<template id="new-note-dialog-template">
+    <style>
+        .new-note-dialog-buttons {
+            margin-block-start: auto;
+        }
+    </style>
+    <div id="new-note-dialog" class="fullscreen card form">
+        <h5>Title</h5>
+        <input id="title-input" type="text" placeholder="Title">
+        <hr>
+
+        <h5>Description</h5>
+        <input id="description-input" type="text" placeholder="Description">
+        <hr>
+
+        <h5>Tags</h5>
+        <input id="tags-input" type="text" placeholder="Tags (tag1 tag2 tag3 ...)">
+        <hr>
+
+        <div class="new-note-dialog-buttons form">
+            <button id="save-button" onclick="onClickSaveButton()">Save</button>
+            <hr>
+            <button onclick="closeNewNoteDialog()">Cancel</button>
+        </div>
+    </div>
+</template>
+
+
+<body class="fullscreen">
+    <div id="new-note-dialog-host"></div>
+
     <div id="install-new-version" class="hidden card">
         Install new version
         <button onclick="updateServiceWorker()">Install</button>
     </div>
-    <div class="new-note card">
-        <h5>New Note</h5>
-        <input id="title-input" type="text" placeholder="Title">
-        <input id="description-input" type="text" placeholder="Description">
-        <input id="tags-input" type="text" placeholder="Tags (tag1 tag2 tag3 ...)">
-        <button id="save-button" onclick="onClickSaveButton()">Save</button>
-    </div>
-
-    <div class="search card">
-        <h5>Search</h5>
-        <input id="search-input" type="text" placeholder="Search (tags)">
-        <button id="search-button" onclick="onClickSearchButton()">Search</button>
+    <div class="card header">
+        <div>
+            <h5>Search</h5>
+            <input id="search-input" type="text" placeholder="Search (tags)">
+            <button id="search-button" onclick="onClickSearchButton()">Search</button>
+        </div>
+        <div class="buttons">
+            <button onclick="openNewNoteDialog()">New</button>
+        </div>
     </div>
 
     <div id="notes" class="notes"></div>

@@ -1,5 +1,7 @@
 
-if ('serviceWorker' in navigator) {
+
+let useServiceWorker = true;
+if ('serviceWorker' in navigator && useServiceWorker) {
     navigator.serviceWorker.register('./sw.js')
         .then(registration => {
             console.log("ServiceWorker registration succeeded.", registration);
@@ -32,6 +34,30 @@ function updateServiceWorker() {
     });
 }
 
+function getTemplate(templateId) {
+    let template = document.getElementById(templateId);
+    return document.importNode(template.content, true);
+}
+
+function append(parentId, child){
+    let parent = document.getElementById(parentId);
+    parent.appendChild(child);
+}
+
+function remove(elementId){
+    let element = document.getElementById(elementId);
+    element.remove();
+}
+
+function openNewNoteDialog(){
+    let newNoteDialog = getTemplate('new-note-dialog-template');
+    append('new-note-dialog-host', newNoteDialog);
+}
+
+function closeNewNoteDialog(){
+    remove('new-note-dialog');
+}
+
 function onClickSearchButton() {
     let tags = document.getElementById('search-input').value;
 
@@ -42,8 +68,6 @@ function onClickSearchButton() {
     }
 
     if (tags.length <= 0) return;
-
-    console.log('search by tags', tags);
 
     getNotesByTags(tags).then((notes) => {
         clearNotes();
@@ -62,10 +86,9 @@ function onClickSaveButton() {
         tags = [];
     }
 
-    console.log('New note', title, description, tags);
-
     let note = saveNote(title, description, tags);
-    renderNote(note);
+    closeNewNoteDialog();
+    update();
 }
 
 function renderNotes(notes) {
@@ -105,6 +128,9 @@ function renderNote(note) {
 
 function clearNotes() {
     var myNode = document.getElementById("notes");
+    
+    if(!myNode) return;
+
     while (myNode.firstChild) {
         myNode.removeChild(myNode.firstChild);
     }
@@ -129,14 +155,6 @@ function getNotesByTags(tags) {
         .toArray();
 }
 
-getAllNotes().then((notes) => {
-    console.log(notes);
-    notes.forEach(element => {
-        renderNote(element);
-    });
-});
-
-
 function saveNote(title, description, tags) {
     let note = {
         title: title,
@@ -149,5 +167,16 @@ function saveNote(title, description, tags) {
     db.notes.add(note);
     return note;
 }
+
+function update(){
+    clearNotes();
+    getAllNotes().then((notes) => {
+        notes.forEach(element => {
+            renderNote(element);
+        });
+    });
+}
+
+update();
 
 

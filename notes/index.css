@@ -5,6 +5,7 @@ html {
 
 body {
     margin: 0;
+    position: relative;
 }
 
 h5 {
@@ -16,12 +17,53 @@ h3, p {
     margin-block-end: 0.25em;
 }
 
+button {
+	background-color:#d1d1d1;
+	border:1px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	padding: 0.5em;
+	text-decoration:none;
+}
+button:hover {
+	background-color:#bfbfbf;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
 .hidden {
     display: none;
 }
 
+.fullscreen {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.buttons{
+    margin-inline-start: auto;
+}
+
 .tag {
-    font-size: 0.8em;
+    font-size: 0.7em;
+    font-weight: bold;
     margin: 0.25em;
     padding: 0 0.5em;
     color: white;
