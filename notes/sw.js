@@ -1,4 +1,4 @@
-const cacheName = "version4"
+const cacheName = "version5"
 
 let preCacheFiles = [
     "/",
@@ -7,7 +7,9 @@ let preCacheFiles = [
     "index.css",
     "images/icon-512.png",
     "manifest.json",
-    "vendor/dexie.min.js"
+    "vendor/dexie.min.js",
+    "assets/css/materialdesignicons.min.css",
+    "assets/fonts/materialdesignicons-webfont.woff2"
 ];
 
 self.addEventListener("install", event => {

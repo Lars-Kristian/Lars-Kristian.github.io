@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/materialdesignicons.min.css" />
     <script src="./vendor/dexie.min.js"></script>
     <script src="./index.js"></script>
 </head>
@@ -33,34 +34,29 @@
         <hr>
 
         <div class="new-note-dialog-buttons form">
-            <button id="save-button" onclick="onClickSaveButton()">Save</button>
-            <hr>
-            <button onclick="closeNewNoteDialog()">Cancel</button>
+            <button id="save-button" class="primary" onclick="onClickSaveButton()">
+                <i class="mdi mdi-content-save"></i>Save</button>
+            <button onclick="closeNewNoteDialog()"><i class="mdi mdi-close"></i>Cancel</button>
         </div>
     </div>
 </template>
 
 
 <body class="fullscreen">
-    <div id="new-note-dialog-host"></div>
 
     <div id="install-new-version" class="hidden card">
-        Install new version
-        <button onclick="updateServiceWorker()">Install</button>
+        New version available
+        <button class="primary" onclick="updateServiceWorker()"><i
+                class="mdi mdi-cellphone-arrow-down"></i>Update</button>
     </div>
     <div class="card header">
-        <div>
-            <h5>Search</h5>
-            <input id="search-input" type="text" placeholder="Search (tags)">
-            <button id="search-button" onclick="onClickSearchButton()">Search</button>
-        </div>
-        <div class="buttons">
-            <button onclick="openNewNoteDialog()">New</button>
-        </div>
+        <input id="search-input" type="text" placeholder="Search (tags)" onkeydown="onKeyDownSearch(event)">
+        <button class="primary" onclick="openNewNoteDialog()"><i class="mdi mdi-plus"></i>New note</button>
     </div>
 
     <div id="notes" class="notes"></div>
 
+    <div id="new-note-dialog-host"></div>
 </body>
 
 </html>

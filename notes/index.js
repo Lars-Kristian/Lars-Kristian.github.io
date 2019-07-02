@@ -58,7 +58,13 @@ function closeNewNoteDialog(){
     remove('new-note-dialog');
 }
 
-function onClickSearchButton() {
+function onKeyDownSearch(event){
+    if(event.keyCode == 13 || event.code == 'Enter'){
+        search();
+    }
+}
+
+function search() {
     let tags = document.getElementById('search-input').value;
 
     if (tags) {
@@ -67,7 +73,13 @@ function onClickSearchButton() {
         tags = [];
     }
 
-    if (tags.length <= 0) return;
+    if (tags.length <= 0){
+        getAllNotes().then((notes) => {
+            clearNotes();
+            renderNotes(notes);
+        });
+        return;
+    }
 
     getNotesByTags(tags).then((notes) => {
         clearNotes();
