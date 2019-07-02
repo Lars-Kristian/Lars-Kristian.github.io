@@ -4,7 +4,8 @@ let useServiceWorker = true;
 if ('serviceWorker' in navigator && useServiceWorker) {
     navigator.serviceWorker.register('./sw.js')
         .then(registration => {
-            registration.addEventListener('updatefound', () => { 
+            registration.addEventListener('updatefound', () => {
+                console.log('updatefound'); 
                 showUpdateServiceWorker();
             });
 
@@ -14,15 +15,17 @@ if ('serviceWorker' in navigator && useServiceWorker) {
         });
 
     navigator.serviceWorker.getRegistration().then((registration) => {
-        if (registration.active) {
-            console.log('We have active', registration.active);
-        }
-
         if (registration.waiting) {
-            showUpdateServiceWorker();
             console.log('We have waiting', registration.waiting);
+            showUpdateServiceWorker();
         }
     });
+
+    navigator.serviceWorker.addEventListener('message', (event)=>{
+        if(event.data == 'reload'){
+            location.reload();
+        }
+    })
 }
 
 function showUpdateServiceWorker() {

@@ -1,4 +1,4 @@
-const cacheName = "version9"
+const cacheName = "version1"
 
 let preCacheFiles = [
     "/",
@@ -12,7 +12,11 @@ let preCacheFiles = [
     "assets/fonts/materialdesignicons-webfont.woff2"
 ];
 
+let clientId;
+
 self.addEventListener("install", event => {
+    clientId = event.clientId;
+
     caches.open(cacheName).then(function (cache) {
         return cache.addAll(preCacheFiles);
     });
@@ -33,9 +37,11 @@ function fromCache(request) {
 
 self.addEventListener('message', event => {
     if (event.data === 'skip-waiting') {
-        self.skipWaiting();
-        setTimeout(()=>{
-            location.reload();
-        }, 1000);
+        self.skipWaiting().then(() => {
+            let clientId = event.source.id;
+            self.clients.get(clientId).then((client) => {
+                client.postMessage('reload');
+            });
+        });
     }
 });
