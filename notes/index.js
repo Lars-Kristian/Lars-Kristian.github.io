@@ -100,7 +100,7 @@ function search() {
 function onClickSaveButton() {
     let title = document.getElementById('title-input').value;
     let description = document.getElementById('description-input').value;
-    let tags = document.getElementById('tags-input').value;
+    let tags = document.getElementById('tags-input').value.toLowerCase();
 
     if (tags) {
         tags = tags.split(' ');
