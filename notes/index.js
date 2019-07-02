@@ -4,12 +4,10 @@ let useServiceWorker = true;
 if ('serviceWorker' in navigator && useServiceWorker) {
     navigator.serviceWorker.register('./sw.js')
         .then(registration => {
-            registration.addEventListener('updatefound', () => {
-                console.log('updatefound'); 
-                if(registration.active){
+            registration.addEventListener('updatefound', () => { 
+                if(registration && registration.active){
                     showUpdateServiceWorker();
                 }
-
             });
 
             console.log("ServiceWorker registration succeeded.", registration);
@@ -18,7 +16,7 @@ if ('serviceWorker' in navigator && useServiceWorker) {
         });
 
     navigator.serviceWorker.getRegistration().then((registration) => {
-        if (registration.waiting) {
+        if (registration && registration.waiting) {
             console.log('We have waiting', registration.waiting);
             showUpdateServiceWorker();
         }
@@ -32,8 +30,8 @@ if ('serviceWorker' in navigator && useServiceWorker) {
 }
 
 function showUpdateServiceWorker() {
-    let element = document.getElementById('install-new-version');
-    element.classList.remove('hidden');
+    let updateServiceWorkerElement = getTemplate('install-new-version-template');
+    append('install-new-version-host', updateServiceWorkerElement);
 }
 
 function updateServiceWorker() {

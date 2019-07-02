@@ -41,13 +41,17 @@
     </div>
 </template>
 
-
-<body class="fullscreen">
-    <div id="install-new-version" class="hidden card header">
+<template id="install-new-version-template">
+    <div id="install-new-version" class="card header">
         New version available
         <button class="primary margin-left" onclick="updateServiceWorker()"><i
                 class="mdi mdi-cellphone-arrow-down"></i>Update</button>
     </div>
+</template>
+
+
+<body class="fullscreen">
+    <div id="install-new-version-host"></div>
     <div class="card header">
         <input id="search-input" type="text" placeholder="Search..." onkeydown="onKeyDownSearch(event)">
         <button class="primary" onclick="openNewNoteDialog()"><i class="mdi mdi-plus"></i>New note</button>
