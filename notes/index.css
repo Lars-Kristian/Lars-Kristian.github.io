@@ -59,6 +59,10 @@ button i {
     display: none;
 }
 
+.margin-left {
+    margin-left: auto;
+}
+
 .fullscreen {
     top: 0;
     bottom: 0;
