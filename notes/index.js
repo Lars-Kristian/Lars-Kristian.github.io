@@ -6,7 +6,10 @@ if ('serviceWorker' in navigator && useServiceWorker) {
         .then(registration => {
             registration.addEventListener('updatefound', () => {
                 console.log('updatefound'); 
-                showUpdateServiceWorker();
+                if(registration.active){
+                    showUpdateServiceWorker();
+                }
+
             });
 
             console.log("ServiceWorker registration succeeded.", registration);
