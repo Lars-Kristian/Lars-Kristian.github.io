@@ -75,7 +75,7 @@ function onKeyDownSearch(event){
 }
 
 function search() {
-    let tags = document.getElementById('search-input').value;
+    let tags = document.getElementById('search-input').value.toLowerCase();
 
     if (tags) {
         tags = tags.split(' ');

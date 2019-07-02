@@ -1,4 +1,4 @@
-const cacheName = "version3"
+const cacheName = "version4"
 
 let preCacheFiles = [
     "/",
