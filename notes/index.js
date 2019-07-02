@@ -4,6 +4,10 @@ let useServiceWorker = true;
 if ('serviceWorker' in navigator && useServiceWorker) {
     navigator.serviceWorker.register('./sw.js')
         .then(registration => {
+            registration.addEventListener('updatefound', () => { 
+                showUpdateServiceWorker();
+            });
+
             console.log("ServiceWorker registration succeeded.", registration);
         }).catch(error => {
             console.log('ServiceWorker registration failed: ', error);

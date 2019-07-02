@@ -1,4 +1,4 @@
-const cacheName = "version5"
+const cacheName = "version7"
 
 let preCacheFiles = [
     "/",
@@ -34,5 +34,8 @@ function fromCache(request) {
 self.addEventListener('message', event => {
     if (event.data === 'skip-waiting') {
         self.skipWaiting();
+        setTimeout(()=>{
+            location.reload();
+        }, 1000);
     }
 });
