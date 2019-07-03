@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>This is the title of the webpage!</title>
+    <base href="/notes-next/">
+    <meta name="theme-color" content="#3367D6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/materialdesignicons.min.css" />
+    <script src="./vendor/dexie.min.js"></script>
+    <script src="./index.js"></script>
+</head>
+
+
+<template id="new-note-dialog-template">
+    <style>
+        .new-note-dialog-buttons {
+            margin-block-start: auto;
+        }
+    </style>
+    <div id="new-note-dialog" class="fullscreen card form">
+        <h5>Title</h5>
+        <input id="title-input" type="text" placeholder="Title">
+        <hr>
+
+        <h5>Description</h5>
+        <input id="description-input" type="text" placeholder="Description">
+        <hr>
+
+        <h5>Tags</h5>
+        <input id="tags-input" type="text" placeholder="Tags (tag1 tag2 tag3 ...)">
+        <hr>
+
+        <div class="new-note-dialog-buttons form">
+            <button id="save-button" class="primary" onclick="onClickSaveButton()">
+                <i class="mdi mdi-content-save"></i>Save</button>
+            <button onclick="closeNewNoteDialog()"><i class="mdi mdi-close"></i>Cancel</button>
+        </div>
+    </div>
+</template>
+
+<template id="install-new-version-template">
+    <div id="install-new-version" class="card header">
+        New version available
+        <button class="primary margin-left" onclick="updateServiceWorker()"><i
+                class="mdi mdi-cellphone-arrow-down"></i>Update</button>
+    </div>
+</template>
+
+
+<body class="fullscreen">
+    <div id="install-new-version-host"></div>
+    <div class="card header">
+        <input id="search-input" type="text" placeholder="Search..." onkeydown="onKeyDownSearch(event)">
+        <button class="primary" onclick="openNewNoteDialog()"><i class="mdi mdi-plus"></i>New note</button>
+    </div>
+
+    <div id="notes" class="notes"></div>
+
+    <div id="new-note-dialog-host"></div>
+</body>
+
+</html>
