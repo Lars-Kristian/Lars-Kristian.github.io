@@ -1,6 +1,6 @@
 {
-  "short_name": "Progressive Web App",
-  "name": "Progressive Web App",
+  "short_name": "Notes",
+  "name": "Notes",
   "icons": [
     {
       "src": "./images/icon-512.png",
@@ -11,6 +11,6 @@
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "theme_color": "#3367D6",
-  "background_color": "#3367D6"
+  "theme_color": "#9c27b0",
+  "background_color": "#9c27b0"
 }

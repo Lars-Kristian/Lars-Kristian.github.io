@@ -1,6 +1,6 @@
 
 
-let useServiceWorker = true;
+let useServiceWorker = false;
 if ('serviceWorker' in navigator && useServiceWorker) {
     navigator.serviceWorker.register('./sw.js')
         .then(registration => {
